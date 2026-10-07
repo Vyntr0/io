@@ -1,0 +1,836 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Deep Studios | Creative Digital Studio</title>
+
+  <meta name="description" content="Deep Studios creates games, websites, Roblox experiences, Discord communities and digital projects.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050912;
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Background glow */
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      background: rgba(0, 140, 255, 0.12);
+      filter: blur(120px);
+      border-radius: 50%;
+      top: -250px;
+      left: -200px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: rgba(0, 220, 255, 0.08);
+      filter: blur(120px);
+      border-radius: 50%;
+      bottom: -200px;
+      right: -150px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Navigation */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7%;
+
+      background: rgba(5, 9, 18, 0.75);
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #ffffff;
+    }
+
+    .logo span {
+      color: #36a9ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #b9c4d4;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #39a9ff;
+    }
+
+    .nav-button {
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: #168cff;
+      color: white !important;
+      box-shadow: 0 0 20px rgba(22, 140, 255, 0.25);
+    }
+
+    .nav-button:hover {
+      background: #39a9ff;
+      transform: translateY(-2px);
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      padding: 120px 20px 80px;
+
+      position: relative;
+    }
+
+    .hero-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+
+      margin-bottom: 30px;
+
+      border-radius: 25px;
+
+      box-shadow:
+        0 0 40px rgba(0, 153, 255, 0.25),
+        0 0 100px rgba(0, 153, 255, 0.08);
+    }
+
+    .hero h1 {
+      font-size: clamp(50px, 8vw, 90px);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #ffffff, #36a9ff, #6de5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #9ba8bb;
+      font-size: 18px;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 10px;
+
+      text-decoration: none;
+      font-weight: 700;
+
+      transition: 0.3s;
+    }
+
+    .primary {
+      background: #168cff;
+      color: white;
+      box-shadow: 0 0 25px rgba(22, 140, 255, 0.25);
+    }
+
+    .primary:hover {
+      transform: translateY(-3px);
+      background: #36a9ff;
+      box-shadow: 0 0 35px rgba(22, 140, 255, 0.4);
+    }
+
+    .secondary {
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-3px);
+    }
+
+    /* Sections */
+
+    section {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 110px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #8e9aac;
+    }
+
+    /* Services */
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      padding: 30px;
+
+      border-radius: 16px;
+
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.06),
+        rgba(255,255,255,0.025)
+      );
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      transition: 0.3s;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: rgba(22, 140, 255, 0.12);
+      filter: blur(45px);
+      top: -60px;
+      right: -60px;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(54, 169, 255, 0.35);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .service-icon {
+      width: 45px;
+      height: 45px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: rgba(22, 140, 255, 0.12);
+      color: #36a9ff;
+
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: #8996a9;
+      font-size: 14px;
+    }
+
+    /* Projects */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .project-card {
+      min-height: 260px;
+
+      padding: 35px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 110, 255, 0.03),
+          rgba(0, 110, 255, 0.18)
+        );
+
+      border: 1px solid rgba(255,255,255,0.08);
+
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(54, 169, 255, 0.4);
+    }
+
+    .project-tag {
+      color: #36a9ff;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .project-card h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .project-card p {
+      color: #9ba8bb;
+      max-width: 550px;
+    }
+
+    /* About */
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      color: #9ba8bb;
+      margin-bottom: 15px;
+    }
+
+    .about-box {
+      padding: 40px;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 140, 255, 0.12),
+          rgba(255,255,255,0.03)
+        );
+
+      border: 1px solid rgba(54, 169, 255, 0.15);
+    }
+
+    .about-box h3 {
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    /* Contact */
+
+    .contact {
+      text-align: center;
+      padding: 90px 30px;
+
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(22, 140, 255, 0.15),
+          rgba(0, 210, 255, 0.04)
+        );
+
+      border: 1px solid rgba(54, 169, 255, 0.15);
+    }
+
+    .contact h2 {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      color: #9ba8bb;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      color: white;
+      text-decoration: none;
+
+      padding: 13px 20px;
+
+      border-radius: 9px;
+
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+
+      transition: 0.3s;
+    }
+
+    .contact-links a:hover {
+      background: rgba(22, 140, 255, 0.18);
+      border-color: rgba(54, 169, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+
+      padding: 35px 7%;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: #718096;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .services {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      nav {
+        padding: 0 20px;
+      }
+
+      .logo {
+        font-size: 19px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        width: 92%;
+        padding: 80px 0;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2,
+      .about h2,
+      .contact h2 {
+        font-size: 34px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+
+  <nav>
+    <div class="logo">
+      Deep<span>Studios</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#services">What We Do</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-button">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+
+  <section class="hero">
+
+    <img
+      src="deep-studios-logo.png"
+      alt="Deep Studios Logo"
+      class="hero-logo"
+    >
+
+    <h1>
+      Build deeper.<br>
+      <span>Create better.</span>
+    </h1>
+
+    <p>
+      Deep Studios is a creative digital studio focused on
+      games, websites, Roblox experiences, communities
+      and modern digital projects.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#services" class="button primary">
+        Explore Deep Studios
+      </a>
+
+      <a href="#contact" class="button secondary">
+        Get in Touch
+      </a>
+    </div>
+
+  </section>
+
+
+  <!-- Services -->
+
+  <section id="services">
+
+    <div class="section-title">
+      <h2>What We Do</h2>
+
+      <p>
+        We build digital experiences from the ground up.
+      </p>
+    </div>
+
+    <div class="services">
+
+      <div class="service-card">
+        <div class="service-icon">🎮</div>
+
+        <h3>Game Development</h3>
+
+        <p>
+          We create games and interactive experiences
+          focused on fun gameplay, creativity and replayability.
+        </p>
+      </div>
+
+
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+
+        <h3>Website Development</h3>
+
+        <p>
+          Modern and responsive websites for games,
+          creators, communities and businesses.
+        </p>
+      </div>
+
+
+      <div class="service-card">
+        <div class="service-icon">◈</div>
+
+        <h3>Roblox Development</h3>
+
+        <p>
+          Roblox games, systems, interfaces and
+          player-focused experiences.
+        </p>
+      </div>
+
+
+      <div class="service-card">
+        <div class="service-icon">💬</div>
+
+        <h3>Discord Communities</h3>
+
+        <p>
+          Professional Discord layouts, channels,
+          roles, moderation systems and community setups.
+        </p>
+      </div>
+
+
+      <div class="service-card">
+        <div class="service-icon">✦</div>
+
+        <h3>UI & Web Design</h3>
+
+        <p>
+          Clean interfaces and modern designs that
+          make digital projects easier to use.
+        </p>
+      </div>
+
+
+      <div class="service-card">
+        <div class="service-icon">+</div>
+
+        <h3>Creative Projects</h3>
+
+        <p>
+          New ideas, experiments, branding and
+          custom digital projects built around your vision.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Projects -->
+
+  <section id="projects">
+
+    <div class="section-title">
+      <h2>Our Projects</h2>
+
+      <p>
+        Projects created and developed by Deep Studios.
+      </p>
+    </div>
+
+    <div class="projects">
+
+      <div class="project-card">
+
+        <div class="project-tag">
+          Studio
+        </div>
+
+        <h3>Deep Studios</h3>
+
+        <p>
+          Our main creative studio for developing games,
+          websites, communities and digital experiences.
+        </p>
+
+      </div>
+
+
+      <div class="project-card">
+
+        <div class="project-tag">
+          Roblox
+        </div>
+
+        <h3>Roblox Projects</h3>
+
+        <p>
+          Interactive Roblox experiences, systems,
+          interfaces and gameplay projects.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- About -->
+
+  <section id="about">
+
+    <div class="about">
+
+      <div>
+        <h2>Built for the digital world.</h2>
+
+        <p>
+          Deep Studios is a creative studio focused on
+          building digital experiences that are enjoyable,
+          useful and easy to interact with.
+        </p>
+
+        <p>
+          From Roblox development and websites to Discord
+          communities and creative projects, we bring ideas
+          together in one place.
+        </p>
+      </div>
+
+
+      <div class="about-box">
+
+        <h3>Why Deep Studios?</h3>
+
+        <p>
+          Creative ideas, modern designs and practical
+          digital solutions.
+        </p>
+
+        <p>
+          We focus on making every project feel unique
+          instead of using the same design for everything.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Contact -->
+
+  <section id="contact">
+
+    <div class="contact">
+
+      <h2>Let's build something.</h2>
+
+      <p>
+        Have a project, idea or collaboration in mind?
+        Contact Deep Studios and let's discuss it.
+      </p>
+
+      <div class="contact-links">
+
+        <a href="mailto:ishansaji12@gmail.com">
+          Email Us
+        </a>
+
+        <a href="https://discord.com/channels/1433755620007215147"
+           target="_blank">
+          Discord
+        </a>
+
+        <a href="https://www.tiktok.com/@devcryovex"
+           target="_blank">
+          TikTok
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Footer -->
+
+  <footer>
+
+    <div>
+      © 2026 <strong>Deep Studios</strong>. All rights reserved.
+    </div>
+
+    <div>
+      Built by Deep Studios
+    </div>
+
+  </footer>
+
+</body>
+</html>
+```
